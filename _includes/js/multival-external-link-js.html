@@ -1,0 +1,37 @@
+<script>
+  // Hello moo!
+  (function(){
+    // Find all metadata links that aren't buttons (Keywords will be anchor w/ .btn class)
+    const links = document.querySelectorAll('#item-metadata .field-value > a:not(.btn)')
+      .forEach((node) => {
+        if (!node.href || !node.href.includes(';')) {
+          return;
+        }
+
+        const list = document.createElement('ul');
+        list.classList.add('external-link-list');
+
+        const parent = node.parentElement;
+
+        node.remove();
+        parent.appendChild(list);
+
+        node.href.split(';')
+        .forEach((url) => {
+          const trimmed = decodeURIComponent(url).trim();
+
+          const anchor = document.createElement('a');
+          anchor.href = trimmed;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener';
+          anchor.classList.add('external-link');
+          anchor.textContent = trimmed;
+
+          const item = document.createElement('li');
+          item.appendChild(anchor);
+          
+          list.appendChild(item);
+        });
+      });
+  })();
+</script>
