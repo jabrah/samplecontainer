@@ -1,6 +1,6 @@
 A list of customizations to the base CollectionBuilder files that we've made:
 
-### Update metadata layout for external links
+## Update metadata layout for external links
 
 Add ability for a metadata field marked as "external_link" to take multiple values, separated by a semicolon (`;`). Render multiple external links as an unordered list. Recommend to add custom CSS to change the list style of the list to none. `ul.external-link-list { list-style: none; }`
 
@@ -29,3 +29,14 @@ vvvvvvvvvvvvvvvvvvv Custom vvvvvvvvvvvvvvvvvvv
       fields += `<dt class="field">{{ f.display_name }}:</dt><dd class="field-value">${valueElAsStr}</dd>`;
   }
 ```
+
+
+## Same height for all cards in gallery
+
+| Original | Resized cards |
+| --- | --- |
+| ![Original gallery with different sized cards](assets/img/docs/gallery_orig.png) | ![Updated gallery with same sized cards](assets/img/docs/gallery_resize.png)|
+
+* Set card height to 100%
+* Set card-body to flexbox with column direction
+* 2nd to last body element set to flex-grow to push last element to bottom
